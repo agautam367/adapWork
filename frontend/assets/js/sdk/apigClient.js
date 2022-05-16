@@ -83,6 +83,78 @@ apigClientFactory.newClient = function (config) {
     
     
     
+    apigClient.getuserGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var getuserGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/getuser').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(getuserGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.getuserOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var getuserOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/getuser').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(getuserOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.getuserUseruiGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var getuserUseruiGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/getuser/userui').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(getuserUseruiGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.getuserUseruiOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var getuserUseruiOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/getuser/userui').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(getuserUseruiOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.placeLiveForecastGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -122,13 +194,13 @@ apigClientFactory.newClient = function (config) {
     apigClient.placedetailGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, ['placeId'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['placeType', 'username', 'placeId'], ['body']);
         
         var placedetailGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/placedetail').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['placeId']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['placeType', 'username', 'placeId']),
             body: body
         };
         
@@ -155,16 +227,88 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.placeinterestedGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['username', 'placeId'], ['body']);
+        
+        var placeinterestedGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/placeinterested').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['username', 'placeId']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(placeinterestedGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.placeinterestedOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var placeinterestedOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/placeinterested').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(placeinterestedOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.placereviewsGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['username', 'place_id', 'comment', 'rating'], ['body']);
+        
+        var placereviewsGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/placereviews').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['username', 'place_id', 'comment', 'rating']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(placereviewsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.placereviewsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var placereviewsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/placereviews').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(placereviewsOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.placesNearbySearchGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, ['currentLong', 'openNow', 'minPrice', 'textLocation', 'placeType', 'radius', 'rankBy', 'useCurrentLocation', 'currentLat', 'maxPrice', 'numResults'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['currentLong', 'username', 'openNow', 'minPrice', 'textLocation', 'placeType', 'radius', 'rankBy', 'useCurrentLocation', 'currentLat', 'maxPrice', 'numResults'], ['body']);
         
         var placesNearbySearchGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/placesNearbySearch').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['currentLong', 'openNow', 'minPrice', 'textLocation', 'placeType', 'radius', 'rankBy', 'useCurrentLocation', 'currentLat', 'maxPrice', 'numResults']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['currentLong', 'username', 'openNow', 'minPrice', 'textLocation', 'placeType', 'radius', 'rankBy', 'useCurrentLocation', 'currentLat', 'maxPrice', 'numResults']),
             body: body
         };
         
@@ -188,6 +332,42 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(placesNearbySearchOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.useruiPost = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var useruiPostRequest = {
+            verb: 'post'.toUpperCase(),
+            path: pathComponent + uritemplate('/userui').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(useruiPostRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.useruiOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var useruiOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/userui').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(useruiOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
 

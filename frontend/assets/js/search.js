@@ -1,45 +1,65 @@
 function search(){
-    var x = document.getElementById("inputText").value;
-    console.log("Search Text: " + x);
+    var searchText = document.getElementById("inputText").value;
+    var proximity = $('#proxSelect').val() * 1609 ;
+    var price = $('#price').val();
+    var category = $("#catSelect option:selected").text();
 
-    var body = {};
-    var params = {
-        q: x
-    };
-        
-    var additionalParams = {
-        headers: {
-            'Content-Type': "application/json",
-        },
-    };
+    if(category === 'Category'){
+        category = "Bar";
+    }
 
-    searchGet(params,body,additionalParams);
+    if(isNaN(proximity)){
+        proximity = 1000;
+    }
+
+    if(price === 'Price'){
+        price = 4;
+    }
+    console.log("searchText: " + searchText);
+    console.log("category: " + category);
+    console.log("proximity: " + proximity);
+    console.log("price: " + price);
+
+    sessionStorage.setItem('searchText', searchText);
+    sessionStorage.setItem('category', category);
+    sessionStorage.setItem('proximity', proximity);
+    sessionStorage.setItem('price', price);
+    sessionStorage.setItem('currentLoc', "false");
+
+
+    location.href = 'results.html';
 }
 
-function searchGet(params, body, additionalParams){
-    var apigClient = apigClientFactory.newClient({});
-    console.log("abc")
-    apigClient.placesNearbySearchGet(params, {'currentLong':0}, additionalParams)
-        .then(function(result) {
-            console.log("Result : ", result);
+function searchNearme(){
+    var searchText = "";
+    var proximity = $('#proxSelect').val() * 1609 ;
+    var price = $('#price').val();
+    var category = $("#catSelect option:selected").text();
 
-            paths = result["data"];
-            console.log("search results : ", paths);
+    if(category === 'Category'){
+        category = "Bar";
+    }
 
-            // var i;
-            // if (paths.length > 0){
-            //     photosDiv.innerHTML = "<ol>";
+    if(isNaN(proximity)){
+        proximity = 1000;
+    }
 
-            //     for (i = 0; i < paths.length; i++) {
-            //         photosDiv.innerHTML += '<li>' + paths[i]["name"] + ", " + paths[i]["vicinity"] + '</li>'
-            //     }
-            //     photosDiv.innerHTML += "</ol>";
-            // }
-            // else{
-            //     photosDiv.innerHTML += '<h1>NO places found!</h1>';
-            // }
+    if(price === 'Price'){
+        price = 4;
+    }
+    // console.log("searchText: " + searchText);
+    console.log("category: " + category);
+    console.log("proximity: " + proximity);
+    console.log("price: " + price);
 
-        }).catch(function(result) {
-            console.log(result);
-        });
+    sessionStorage.setItem('searchText', searchText);
+    sessionStorage.setItem('category', category);
+    sessionStorage.setItem('proximity', proximity);
+    sessionStorage.setItem('price', price);
+    sessionStorage.setItem('currentLoc', "true");
+
+
+    location.href = 'results.html';
+    // console.log("XXXXX");
+
 }

@@ -40,42 +40,39 @@
 
         <form class="col-lg-6 offset-lg-3" style="width:50%">
           <div class="d-flex">
-            <input id="inputText" class="form-control mr-sm-2" type="search" placeholder="Neighborhood?" aria-label="Search">
-            <button type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="search()">Search</button>
+            <input id="inputText" required class="form-control mr-sm-2" type="search" placeholder="Neighborhood?" aria-label="Search">
+            <button type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="search()" style="margin-left: 5px">Search</button>
+            <button type="button" class="btn btn-success my-2 my-sm-0" onclick="searchNearme()" style="margin-left: 5px">Search Near me</button>
           </div>
           <br>
           <div class="search-filters">
-            <select class="form-select" aria-label="Default select example">
+            <select id="catSelect" class="form-select" aria-label="Default select example">
               <option selected>Category</option>
-              <option value="1">Park</option>
-              <option value="2">Cafe</option>
-              <option value="3">Library</option>
-              <option value="4">Restaurant</option>
+              <option value="1">Bakery</option>
+              <option value="2">Bar</option>
+              <option value="3">Book Store</option>
+              <option value="4">Cafe</option>
+              <option value="5">Library</option>
+              <option value="6">Park</option>
+              <option value="7">Pestaurant</option>
+              <option value="8">University</option>
             </select>
 
-            <select class="form-select" aria-label="Default select example">
+            <select id="proxSelect" class="form-select" aria-label="Default select example" style="margin-left: 5px">
               <option selected>Proximity</option>
-              <option value="1">&lt 1 Mile</option>
-              <option value="2">1 Mile - 5 Mile</option>
-              <option value="3">&gt 5 Mile</option>
+              <option value="1"> &lt 1 Mile</option>
+              <option value="2"> &lt 2 Mile</option>
+              <option value="5"> &lt 5 Mile</option>
             </select>
-          
 
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Price Range</option>
+            <select id="price" class="form-select" aria-label="Default select example" style="margin-left: 5px">
+              <option selected>Price</option>
               <option value="1">$</option>
               <option value="2">$$</option>
-              <option value="3">$$$+</option>
+              <option value="3">$$$</option>
+              <option value="4">$$$$</option>
             </select>
 
-            <button type="button" class="btn btn-outline-secondary">Amenities</button>
-
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Occupancy</option>
-              <option value="1">Less Crowded</option>
-              <option value="2">Crowded</option>
-              <option value="3">More Crowded</option>
-            </select>
           </div>
         </form>
 
@@ -131,7 +128,7 @@
     <script src="assets/js/search.js"></script>
     <script>
       var x = document.getElementById("demo");
-      
+      var lat, lon;
       function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
@@ -141,11 +138,33 @@
       }
       
       function showPosition(position) {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
         x.innerHTML = "Latitude: " + position.coords.latitude + 
         "<br>Longitude: " + position.coords.longitude;
+
+        GOOGLE_KEY = "AIzaSyDAEnmrfeFCXgLgOa_gWKfq5XKrOYs_GBs"
+      var request = new XMLHttpRequest();
+      var method = 'GET';
+      var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lon+'&sensor=true&key='+GOOGLE_KEY;
+      var async = true;
+
+      request.open( "GET", url, false ); // false for synchronous request
+      request.send( null );
+
+      var res = JSON.parse(request.responseText)
+      
+      // console.log("xyz:" + res)
+
+      // console.log("xyz:" + request.response['results[2].long_name)
       }
 
       getLocation();
+
+      // console.log("1"+lat);
+      
+
+      
     </script>
     
     <script type="text/javascript" src="assets/js/sdk/lib/axios/dist/axios.standalone.js"></script>
